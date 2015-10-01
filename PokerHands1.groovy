@@ -135,34 +135,5 @@ System.out.println("Card 5: " + r5 + " of " + s5);
 if ((s1.equals(s2)) && (s1.equals(s3)) && (s1.equals(s4)) && (s1.equals(s5))) {
     // straight flush check here.
     
-    Boolean ascendingStraight = (((rank2-rank1 == 1) && ((rank3-rank2) == 1) && ((rank4-
-    rank3) == 1) && ((rank5-rank4) == 1));
-    Boolean descendingStraight = (((rank2-rank1 == -1) && ((rank3-rank2) == -1) && ((rank4-
-    rank3) == -1) && ((rank5-rank4) == -1));   
     
-    if (ascendingStraight || descendingStraight) {
-    	System.out.println("Straight Flush");
-    }
-    else {
-    
-    System.out.println("Flush")
-    
-    }
 }
-else {
-    //straight check
-    Boolean ascendingStraight = (((rank2-rank1 == 1) && ((rank3-rank2) == 1) && ((rank4-
-    rank3) == 1) && ((rank5-rank4) == 1));
-    Boolean descendingStraight = (((rank2-rank1 == -1) && ((rank3-rank2) == -1) && ((rank4-
-    rank3) == -1) && ((rank5-rank4) == -1));   
-    
-    if (ascendingStraight || descendingStraight) {
-    	System.out.println("Straight");
-    }
-    
-    else {
-    	// Two of a kind check
-    	
-    }    
-}
-
