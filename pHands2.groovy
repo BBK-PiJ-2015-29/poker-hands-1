@@ -5,41 +5,22 @@ class Hand {
 	Card card4;
 	Card card5;
 	
-	//method to check if suits match
-	boolean checkMatchSuits (Card first, Card second) {
-		if (first.suit.equals(second.suit)) {
-			return true;
-		}
-		else {
-			return false;
-		}
-	}
-	// method to check if ranks match
-	boolean checkMatchRanks (Card first, Card second) {
-		if (first.rank == second.rank) {
-			return true;
-		}
-		else {
-			return false;
-		}
-	}
-	
-	//method to check that cards match exactly
-	boolean checkValidCard (Card first, Card second) {
-		if (checkMatchSuits(first, second)) {
-			if (checkMatchRanks(first, second)) {
-				return false;
-			}
-			else {
-				return true;
-			}
-		}
+		
+	//method to print hand
+	void printHand() {
+		System.out.println(this.card1.stringRank + " of " + this.card1.stringSuit);
+		System.out.println(this.card2.stringRank + " of " + this.card2.stringSuit);
+		System.out.println(this.card3.stringRank + " of " + this.card3.stringSuit);
+		System.out.println(this.card4.stringRank + " of " + this.card4.stringSuit);
+		System.out.println(this.card5.stringRank + " of " + this.card5.stringSuit);
 	}
 }
 class Card {
 	int rank;
 	String stringRank;
-	String suit;
+	int suit;
+	String stringSuit;
+	
 
 	// set rank method
 	void setRank() {
@@ -70,6 +51,9 @@ class Card {
 					this.rank = 1;
 					this.stringRank = "Ace";
 					rankLoop = false;
+				}
+				else if (r1.toUpperCase().equals("EXIT")) {
+					System.exit(0);
 				}
 				else {
 					System.out.println("not a valid rank input");
@@ -126,20 +110,27 @@ class Card {
 			System.out.print("> ");
 			s1 = System.console().readLine().toUpperCase();
 			if (s1.substring(0,1).equals("H")) {
-				this.suit = "Hearts";
+				this.suit = 1;
+				this.stringSuit = "Hearts";
 				invalidSuit = false;
 			}
 			else if (s1.substring(0,1).equals("D")) {
-				this.suit = "Diamonds";
+				this.suit = 2;
+				this.stringSuit = "Diamonds";
 				invalidSuit = false;
 			}
 			else if (s1.substring(0,1).equals("C")) {
-				this.suit = "Clubs";
+				this.suit = 3;
+				this.stringSuit = "Clubs";
 				invalidSuit = false;
 			}
 			else if (s1.substring(0,1).equals("S")) {
-				this.suit = "Spades";
+				this.suit = 4;
+				this.stringSuit = "Spades";
 				invalidSuit = false;
+			}
+			else if (s1.equals("EXIT")) {
+				System.exit(0);
 			}
 			else {
 				System.out.println("Invalid suit!");
@@ -148,33 +139,99 @@ class Card {
 		
 	}
 }
+//method to check if suits match
+boolean checkMatchSuits (Card first, Card second) {
+	if (first.suit == second.suit) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+// method to check if ranks match
+boolean checkMatchRanks (Card first, Card second) {
+	if (first.rank == second.rank) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
+//method to check that cards match exactly
+boolean checkValidCard (Card first, Card second) {
+	if (checkMatchSuits(first, second) && checkMatchRanks(first, second)) {
+		return false;
+	}
+	else {
+		return true;
+	}
+}
+
 // Create the hand of 5 cards
 Hand myHand = new Hand();
 
 Card card1 = new Card();
+Card card2 = new Card();
+Card card3 = new Card();
+Card card4 = new Card();
+Card card5 = new Card();
+
+// Add cards to the hand
 card1.setRank();
 card1.setSuit();
 myHand.card1 = card1;
 
-Card card2 = new Card();
-card2.setRank();
-card2.setSuit();
-if (checkValidCard(card1, card2)) {
-	
+boolean card2OK = false;
+while (!card2OK) {
+	card2.setRank();
+	card2.setSuit();
+	if (checkValidCard(card1, card2)) {
+		myHand.card2 = card2;
+		card2OK = true;
+	}
+	else {
+		System.out.println("Can't be the same card, try again");
+	}
 }
-myHand.card2 = card2;
 
-Card card3 = new Card();
-card3.setRank();
-card3.setSuit();
-myHand.card3 = card3;
+boolean card3OK = false;
+while (!card3OK) {
+	card3.setRank();
+	card3.setSuit();
+	if (checkValidCard(card2, card3)) {
+		myHand.card3 = card3;
+		card3OK = true;
+	}
+	else {
+		System.out.println("Can't be the same card, try again");
+	}
+}
 
-Card card4 = new Card();
-card4.setRank();
-card4.setSuit();
-myHand.card4 = card4; 
+boolean card4OK = false;
+while (!card4OK) {
+	card4.setRank();
+	card4.setSuit();
+	if (checkValidCard(card3, card4)) {
+		myHand.card4 = card4;
+		card4OK = true;
+	}
+	else {
+		System.out.println("Can't be the same card, try again");
+	}
+}
 
-Card card5 = new Card();
-card5.setRank();
-card5.setSuit();
-myHand.card5 = card5;
+boolean card5OK = false;
+while (!card5OK) {
+	card5.setRank();
+	card5.setSuit();
+	if (checkValidCard(card4, card5)) {
+		myHand.card5 = card5;
+		card5OK = true;
+	}
+	else {
+		System.out.println("Can't be the same card, try again");
+	}
+}
+
+myHand.printHand();
