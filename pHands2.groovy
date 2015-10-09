@@ -5,7 +5,7 @@ class Hand {
 	Card card4;
 	Card card5;
 	
-		
+			
 	//method to print hand
 	void printHand() {
 		System.out.println(this.card1.stringRank + " of " + this.card1.stringSuit);
@@ -157,7 +157,6 @@ boolean checkMatchRanks (Card first, Card second) {
 		return false;
 	}
 }
-
 //method to check that cards match exactly
 boolean checkValidCard (Card first, Card second) {
 	if (checkMatchSuits(first, second) && checkMatchRanks(first, second)) {
@@ -199,7 +198,7 @@ boolean card3OK = false;
 while (!card3OK) {
 	card3.setRank();
 	card3.setSuit();
-	if (checkValidCard(card2, card3)) {
+	if (checkValidCard(card2, card3) && checkValidCard(card1, card3)) {
 		myHand.card3 = card3;
 		card3OK = true;
 	}
@@ -212,7 +211,8 @@ boolean card4OK = false;
 while (!card4OK) {
 	card4.setRank();
 	card4.setSuit();
-	if (checkValidCard(card3, card4)) {
+	if (checkValidCard(card3, card4) && checkValidCard(card2, card4) 
+									&& checkValidCard(card1, card4)) {
 		myHand.card4 = card4;
 		card4OK = true;
 	}
@@ -225,7 +225,9 @@ boolean card5OK = false;
 while (!card5OK) {
 	card5.setRank();
 	card5.setSuit();
-	if (checkValidCard(card4, card5)) {
+	if (checkValidCard(card4, card5) && checkValidCard(card3, card5) 
+									&& checkValidCard(card2, card5) 
+									&& checkValidCard(card1, card5)) {
 		myHand.card5 = card5;
 		card5OK = true;
 	}
