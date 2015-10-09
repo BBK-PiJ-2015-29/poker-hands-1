@@ -1,3 +1,41 @@
+class Hand {
+	Card card1;
+	Card card2;
+	Card card3;
+	Card card4;
+	Card card5;
+	
+	//method to check if suits match
+	boolean checkMatchSuits (Card first, Card second) {
+		if (first.suit.equals(second.suit)) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	// method to check if ranks match
+	boolean checkMatchRanks (Card first, Card second) {
+		if (first.rank == second.rank) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
+	//method to check that cards match exactly
+	boolean checkValidCard (Card first, Card second) {
+		if (checkMatchSuits(first, second)) {
+			if (checkMatchRanks(first, second)) {
+				return false;
+			}
+			else {
+				return true;
+			}
+		}
+	}
+}
 class Card {
 	int rank;
 	String stringRank;
@@ -8,7 +46,7 @@ class Card {
 		String r1 = "";
 		boolean rankLoop = true;
 		while (rankLoop) {
-			System.out.println("Please input card 1 rank 1-10,J, Q or K");
+			System.out.println("Please input card rank 1-10,J, Q or K");
 			System.out.print("> ");
 			r1 = System.console().readLine();
 			//Convert ranks to integers for ordering
@@ -28,6 +66,11 @@ class Card {
 					this.stringRank = "King";
 					rankLoop = false;
 				}
+				else if (r1.toUpperCase().equals("A")) {
+					this.rank = 1;
+					this.stringRank = "Ace";
+					rankLoop = false;
+				}
 				else {
 					System.out.println("not a valid rank input");
 				}
@@ -39,7 +82,7 @@ class Card {
 					rankLoop = false;
 					
 					switch (this.rank) {
-						case 1: this.stringRank = "One";
+						case 1: this.stringRank = "Ace";
 						break;
 						case 2: this.stringRank = "Two";
 						break;
@@ -105,10 +148,33 @@ class Card {
 		
 	}
 }
-
+// Create the hand of 5 cards
+Hand myHand = new Hand();
 
 Card card1 = new Card();
 card1.setRank();
 card1.setSuit();
+myHand.card1 = card1;
 
-System.out.println(card1.stringRank + " of " + card1.suit);
+Card card2 = new Card();
+card2.setRank();
+card2.setSuit();
+if (checkValidCard(card1, card2)) {
+	
+}
+myHand.card2 = card2;
+
+Card card3 = new Card();
+card3.setRank();
+card3.setSuit();
+myHand.card3 = card3;
+
+Card card4 = new Card();
+card4.setRank();
+card4.setSuit();
+myHand.card4 = card4; 
+
+Card card5 = new Card();
+card5.setRank();
+card5.setSuit();
+myHand.card5 = card5;
